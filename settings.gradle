@@ -8,3 +8,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "HESABit"
 include ':app', ':core'
+include ':navigation'
+include ':feature_authentication'
