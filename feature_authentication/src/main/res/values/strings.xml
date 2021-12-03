@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">HESABit</string>
+    <string name="hint_password">Password</string>
+    <string name="error_field_empty">This field cannot be empty</string>
+    <string name="invalid_email">This email is not valid</string>
+    <string name="input_too_short">Password must contain at least %d characters</string>
+    <string name="invalid_password">Password must contain at least one capital letter and one number</string>
 </resources>

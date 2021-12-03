@@ -14,6 +14,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        buildConfigField "boolean", "DEMO_MODE", "Boolean.parseBoolean(\"true\")"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }

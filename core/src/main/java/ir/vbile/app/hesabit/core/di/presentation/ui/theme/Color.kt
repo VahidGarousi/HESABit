@@ -1,4 +1,4 @@
-package ir.vbile.app.hesabit.ui.theme
+package ir.vbile.app.hesabit.core.di.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

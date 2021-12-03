@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ir.vbile.app.hesabit.navigation.NavigationManager
 import ir.vbile.app.hesabit.presentation.AppNavigation
-import ir.vbile.app.hesabit.ui.theme.HESABitTheme
+import ir.vbile.app.hesabit.core.di.presentation.ui.theme.HESABitTheme
 import javax.inject.Inject
 
 @AndroidEntryPoint
