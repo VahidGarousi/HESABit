@@ -18,7 +18,7 @@ import ir.vbile.app.hesabit.core.di.presentation.components.StandardTextFiled
 import ir.vbile.app.hesabit.core.di.presentation.ui.theme.SpaceLarge
 import ir.vbile.app.hesabit.core.di.presentation.ui.theme.SpaceMedium
 import ir.vbile.app.hesabit.core.di.presentation.util.ValidationConstants
-import ir.vbile.app.hesabit.core.di.util.AuthError
+import ir.vbile.app.hesabit.core.di.util.ValidationError
 import ir.vbile.app.hesabit.feature_authentication.R
 
 @Composable
@@ -49,6 +49,19 @@ private fun Authentication(
 }
 
 @Composable
+private fun ForgotPassword(
+    events: (event: AuthenticationEvent) -> Unit
+) {
+    Box(modifier = Modifier.fillMaxWidth()) {
+        TextButton(onClick = {
+            events(AuthenticationEvent.ForgotPasswordClicked)
+        }) {
+            Text(text = stringResource(id = R.string.forgotten_your_password))
+        }
+    }
+}
+
+@Composable
 private fun SignIn(
     viewState: AuthenticationState,
     events: (event: AuthenticationEvent) -> Unit
@@ -67,8 +80,8 @@ private fun SignIn(
                 },
                 hint = stringResource(id = R.string.hint_email_address),
                 error = when (viewState.emailAddress.error) {
-                    is AuthError.FieldEmpty -> stringResource(id = R.string.error_field_empty)
-                    is AuthError.InvalidEmail -> stringResource(id = R.string.invalid_email)
+                    is ValidationError.FieldEmpty -> stringResource(id = R.string.error_field_empty)
+                    is ValidationError.InvalidEmail -> stringResource(id = R.string.invalid_email)
                     else -> ""
                 }
             )
@@ -81,9 +94,9 @@ private fun SignIn(
                 keyboardType = KeyboardType.Password,
                 hint = stringResource(id = R.string.hint_password),
                 error = when (viewState.password.error) {
-                    is AuthError.FieldEmpty -> stringResource(id = R.string.error_field_empty)
-                    is AuthError.InvalidPassword -> stringResource(id = R.string.invalid_password)
-                    is AuthError.InputTooShort -> stringResource(
+                    is ValidationError.FieldEmpty -> stringResource(id = R.string.error_field_empty)
+                    is ValidationError.InvalidPassword -> stringResource(id = R.string.invalid_password)
+                    is ValidationError.InputTooShort -> stringResource(
                         id = R.string.input_too_short,
                         ValidationConstants.MIN_PASSWORD_LENGTH
                     )
@@ -95,12 +108,19 @@ private fun SignIn(
                 showPasswordToggle = viewState.password.isPasswordVisible
             )
             Spacer(modifier = Modifier.height(SpaceMedium))
-            Button(onClick = {
-                events(AuthenticationEvent.AuthenticateClicked)
-            }) {
-                Text(
-                    text = stringResource(id = R.string.sign_in)
-                )
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Button(onClick = {
+                    events(AuthenticationEvent.AuthenticateClicked)
+                }) {
+                    Text(
+                        text = stringResource(id = R.string.sign_in)
+                    )
+                }
+                ForgotPassword(events)
             }
         }
         TextButton(
@@ -141,8 +161,8 @@ private fun SignUp(
                 },
                 hint = stringResource(id = R.string.hint_email_address),
                 error = when (viewState.emailAddress.error) {
-                    is AuthError.FieldEmpty -> stringResource(id = R.string.error_field_empty)
-                    is AuthError.InvalidEmail -> stringResource(id = R.string.invalid_email)
+                    is ValidationError.FieldEmpty -> stringResource(id = R.string.error_field_empty)
+                    is ValidationError.InvalidEmail -> stringResource(id = R.string.invalid_email)
                     else -> ""
                 }
             )
@@ -154,9 +174,9 @@ private fun SignUp(
                 },
                 hint = stringResource(id = R.string.hint_password),
                 error = when (viewState.password.error) {
-                    is AuthError.FieldEmpty -> stringResource(id = R.string.error_field_empty)
-                    is AuthError.InvalidPassword -> stringResource(id = R.string.invalid_password)
-                    is AuthError.InputTooShort -> stringResource(
+                    is ValidationError.FieldEmpty -> stringResource(id = R.string.error_field_empty)
+                    is ValidationError.InvalidPassword -> stringResource(id = R.string.invalid_password)
+                    is ValidationError.InputTooShort -> stringResource(
                         id = R.string.input_too_short,
                         ValidationConstants.MIN_PASSWORD_LENGTH
                     )

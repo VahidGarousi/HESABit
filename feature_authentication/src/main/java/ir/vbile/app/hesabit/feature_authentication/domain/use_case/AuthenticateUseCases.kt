@@ -5,4 +5,5 @@ import javax.inject.Inject
 class AuthenticateUseCases @Inject constructor(
     val signUp: SignUpUseCase,
     val signIn: SignInUseCase,
+    val resetPassword : ResetPasswordUseCase
 )

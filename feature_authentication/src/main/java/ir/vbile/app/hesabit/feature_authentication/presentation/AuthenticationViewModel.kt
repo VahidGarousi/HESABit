@@ -1,6 +1,5 @@
 package ir.vbile.app.hesabit.feature_authentication.presentation
 
-import androidx.compose.ui.platform.textInputServiceFactory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,7 +7,7 @@ import ir.vbile.app.hesabit.core.di.presentation.components.PasswordTextFieldSta
 import ir.vbile.app.hesabit.core.di.presentation.components.StandardTextFiledState
 import ir.vbile.app.hesabit.core.di.util.Resource
 import ir.vbile.app.hesabit.core.di.util.UiText
-import ir.vbile.app.hesabit.feature_authentication.data.models.AuthenticationModel
+import ir.vbile.app.hesabit.feature_authentication.data.models.ResponseAuthentication
 import ir.vbile.app.hesabit.feature_authentication.domain.use_case.AuthenticateUseCases
 import ir.vbile.app.hesabit.feature_authentication.domain.use_case.SignInUseCase
 import ir.vbile.app.hesabit.feature_authentication.domain.use_case.SignUpUseCase
@@ -17,7 +16,6 @@ import ir.vbile.app.hesabit.navigation.directions.AuthenticationDirections
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -54,9 +52,7 @@ class AuthenticationViewModel @Inject constructor(
                         this.userEmail = StandardTextFiledState(text = event.email)
                     }
                     AuthenticationEvent.ForgotPasswordClicked -> {
-                        navigationManager.navigate(
-                            AuthenticationDirections.forgotPassword
-                        )
+                        navigationManager.navigate(AuthenticationDirections.forgotPassword)
                     }
                     is AuthenticationEvent.PasswordChanged -> {
                         this.userPassword = PasswordTextFieldState(text = event.password)
@@ -150,7 +146,7 @@ class AuthenticationViewModel @Inject constructor(
         }
     }
 
-    private fun handleResult(result: AuthenticationModel?) {
+    private fun handleResult(result: ResponseAuthentication?) {
         navigationManager.navigate(AuthenticationDirections.dashboard)
     }
 

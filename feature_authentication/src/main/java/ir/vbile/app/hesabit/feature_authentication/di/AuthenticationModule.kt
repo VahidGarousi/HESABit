@@ -10,6 +10,7 @@ import ir.vbile.app.hesabit.feature_authentication.data.repository.DemoAuthentic
 import ir.vbile.app.hesabit.feature_authentication.domain.repository.AuthenticationRepository
 import ir.vbile.app.hesabit.feature_authentication.domain.use_case.SignInUseCase
 import ir.vbile.app.hesabit.feature_authentication.domain.use_case.AuthenticateUseCases
+import ir.vbile.app.hesabit.feature_authentication.domain.use_case.ResetPasswordUseCase
 import ir.vbile.app.hesabit.feature_authentication.domain.use_case.SignUpUseCase
 import javax.inject.Singleton
 
@@ -21,7 +22,8 @@ object AuthenticationModule {
     @Singleton
     fun provideAuthenticationRepository(
         impl: AuthenticationRepositoryImpl
-    ): AuthenticationRepository = if (!BuildConfig.DEMO_MODE) impl else DemoAuthenticationRepositoryImpl()
+    ): AuthenticationRepository =
+        if (!BuildConfig.DEMO_MODE) impl else DemoAuthenticationRepositoryImpl()
 
     @Provides
     @Singleton
@@ -37,11 +39,19 @@ object AuthenticationModule {
 
     @Provides
     @Singleton
+    fun provideResetPasswordUseCase(
+        repository: AuthenticationRepository
+    ) = ResetPasswordUseCase(repository)
+
+    @Provides
+    @Singleton
     fun provideAuthenticateUseCases(
         signUpUseCase: SignUpUseCase,
-        signInUseCase: SignInUseCase
+        signInUseCase: SignInUseCase,
+        resetPasswordUseCase: ResetPasswordUseCase
     ) = AuthenticateUseCases(
         signIn = signInUseCase,
-        signUp =signUpUseCase
+        signUp = signUpUseCase,
+        resetPassword = resetPasswordUseCase
     )
 }

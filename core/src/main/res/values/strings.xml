@@ -14,4 +14,9 @@
 
     <string name="password_visible_content_description">Hide password</string>
     <string name="password_hidden_content_description">Show password</string>
+
+    <!-- Forgot password -->
+    <string name="hint_forgot_password">Email Address</string>
+    <string name="title_forgot_password">Reset password</string>
+    <string name="action_forgot_password">Rest Password</string>
 </resources>

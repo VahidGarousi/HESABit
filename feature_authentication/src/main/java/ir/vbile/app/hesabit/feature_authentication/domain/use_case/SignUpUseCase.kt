@@ -1,7 +1,7 @@
 package ir.vbile.app.hesabit.feature_authentication.domain.use_case
 
 import ir.vbile.app.hesabit.core.di.presentation.util.ValidationUtil
-import ir.vbile.app.hesabit.feature_authentication.data.models.AuthenticationResult
+import ir.vbile.app.hesabit.feature_authentication.presentation.AuthenticationResult
 import ir.vbile.app.hesabit.feature_authentication.domain.repository.AuthenticationRepository
 import javax.inject.Inject
 

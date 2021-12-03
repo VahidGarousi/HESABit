@@ -1,10 +1,8 @@
 package ir.vbile.app.hesabit.feature_authentication.domain.use_case
 
 import ir.vbile.app.hesabit.core.di.presentation.util.ValidationUtil
-import ir.vbile.app.hesabit.core.di.util.Resource
-import ir.vbile.app.hesabit.feature_authentication.data.models.AuthenticationResult
+import ir.vbile.app.hesabit.feature_authentication.presentation.AuthenticationResult
 import ir.vbile.app.hesabit.feature_authentication.domain.repository.AuthenticationRepository
-import ir.vbile.app.hesabit.feature_authentication.presentation.AuthenticateMode
 import javax.inject.Inject
 
 class SignInUseCase @Inject constructor(
